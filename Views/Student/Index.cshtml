@@ -1,0 +1,48 @@
+﻿@model List<NewProject2.Models.Student>
+
+<h2>Add Students</h2>
+
+<form id="studentForm" method="post" action="/Student/Create">
+    <table class="table" id="studentTable">
+        <thead>
+            <tr>
+                <th>Subject Name</th>
+                <th>Internal Marks (Max)</th>
+                <th>Internal Marks (Secured)</th>
+                <th>Semester Marks (Max)</th>
+                <th>Semester Marks (Secured)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td><input type="text" name="Students[@i].SubjectName" value="@Model[i].SubjectName" /></td>
+                    <td><input type="number" name="Students[@i].InternalMarksMaximum" value="@Model[i].InternalMarksMaximum" /></td>
+                    <td><input type="number" name="Students[@i].InternalMarksSecured" value="@Model[i].InternalMarksSecured" /></td>
+                    <td><input type="number" name="Students[@i].SemesterMarksMaximum" value="@Model[i].SemesterMarksMaximum" /></td>
+                    <td><input type="number" name="Students[@i].SemesterMarksSecured" value="@Model[i].SemesterMarksSecured" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button type="button" id="addRowButton" class="btn btn-primary">Add Row</button>
+    <button type="submit" id="saveButton" class="btn btn-success">Save All</button>
+</form>
+
+<script>
+    document.getElementById('addRowButton').addEventListener('click', function () {
+        var table = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow(table.rows.length);
+        var cellCount = table.rows[0].cells.length;
+
+        for (var i = 0; i < cellCount; i++) {
+            var cell = newRow.insertCell(i);
+            var input = document.createElement('input');
+            input.type = (i == 0) ? 'text' : 'number'; // Text input for Subject Name, Number input for other fields
+            input.name = 'Students[' + (table.rows.length - 1) + '].' + (i == 0 ? 'SubjectName' : (i == 1 || i == 3 ? 'InternalMarksMaximum' : (i == 2 || i == 4 ? 'InternalMarksSecured' : (i == 3 || i == 5 ? 'SemesterMarksMaximum' : 'SemesterMarksSecured'))));
+            cell.appendChild(input);
+        }
+    });
+</script>

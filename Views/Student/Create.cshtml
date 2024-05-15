@@ -1,0 +1,27 @@
+﻿@model NewProject2.Models.Student
+
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="SubjectName">Subject Name</label>
+        <input asp-for="SubjectName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="InternalMarksMaximum">Internal Marks (Max)</label>
+        <input asp-for="InternalMarksMaximum" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="InternalMarksSecured">Internal Marks (Secured)</label>
+        <input asp-for="InternalMarksSecured" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SemesterMarksMaximum">Semester Marks (Max)</label>
+        <input asp-for="SemesterMarksMaximum" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SemesterMarksSecured">Semester Marks (Secured)</label>
+        <input asp-for="SemesterMarksSecured" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
